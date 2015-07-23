@@ -50,7 +50,7 @@ Step 2. Design features
 The features that we will make are based on keywords that identify each file format.
 
 In your directory, create a file named `keywords.yml`. This is a list of strings,
-in YAML format; each string is a single keyword, in double quotes.
+in YAML format; each string is a single keyword, in quotes.
 
 Paste these keywords to `keywords.yml`:
 
