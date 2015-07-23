@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'com.smartling.ml.tools.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // compile 'com.smartling:ml-text:0.1.0'
+    compile project(':..')
+
+    runtime "ch.qos.logback:logback-classic:1.1.2"
+
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
+    testCompile 'junit:junit:4.11'
+}

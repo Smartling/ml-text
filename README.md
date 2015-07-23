@@ -27,9 +27,11 @@ Note, that you should use the same text preprocessing and feature extractor for 
 Using
 -----
 
-Prepare model files. Default model is taken from resource files:
+Prepare model files. Follow [toy-data tutorial](toy-data-tutorial) to understand expected model files format.
 
-* ml.keywords - (YAML list of string literals) keywords to extract from text and build statistics 
+Default model is taken from resource files:
+
+* ml.keywords - (YAML list of string literals) keywords to extract from text and build statistics
 * ml.labels - class names
 * ml.scale - scaling range of numeric features
 * ml.model - trained SVM model
@@ -40,13 +42,13 @@ Sample classification:
 
 ```java
 void doClassify(InputStream inputStream) {
-    ContentPreprocessor preprocessor = new ContentPreprocessor()
+    ContentPreprocessor preprocessor = new ContentPreprocessor();
     String content = preprocessor.convert(inputStream).get();
 
-    FeatureExtractor featureExtractor = new FeatureExtractor();
+    FeatureExtractor featureExtractor = new FeatureExtractor();  // loads ml.keywords
     Features features = featureExtractor.extract(content);
 
-    SvmClassifier classifier = new SvmClassifier();
+    SvmClassifier classifier = new SvmClassifier();  // loads ml.model, ml.scale, ml.labels
     ClassifierResult result = classifier.classify(features);
 
     System.out.println(String.format("classified as: %s (%.2f confidence)",
@@ -58,7 +60,7 @@ void doClassify(InputStream inputStream) {
 Authors
 -------
 
-* [Pavel Ivashkov](https://github.com/paiv) 
+* [Pavel Ivashkov](https://github.com/paiv)
 
 
 Copyright and license
