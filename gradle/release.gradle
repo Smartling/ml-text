@@ -1,0 +1,39 @@
+
+ext.exec = { command ->
+    def output = new StringBuilder()
+    def error = new StringBuilder()
+
+    def process = command.execute()
+
+    process.consumeProcessOutput(output, error)
+
+    def ret = process.waitFor()
+    if(ret) {
+        throw new RuntimeException("Failed to execute command '${command}': ${error}")
+    }
+
+    return output.toString()
+}
+
+
+ext.getVersionName = {
+    def tagname = getTagName()
+    if(getCurrentBranch() != "master") {
+        return tagname + "-SNAPSHOT"
+    } else {
+        return tagname
+    }
+}
+
+ext.getCurrentBranch = {
+    return exec('git rev-parse --abbrev-ref HEAD').trim()
+}
+
+ext.getTagName = {
+    try {
+        return exec('git describe --tags').trim()
+    }
+    catch (ignored) {
+        return 'untagged'
+    }
+}
