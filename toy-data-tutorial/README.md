@@ -4,7 +4,7 @@ Toy-data Tutorial
 
 Were you learn how to train SVM classifier and identify files by their content.
 
-Follow this guide to generate the model files in format expected by *ml-text* library.
+Follow this guide to generate the model files in format expected by **ml-text** library.
 
 
 Prerequisites
@@ -74,7 +74,7 @@ When done, the output should be something like
     C=2.0 g=0.25
     Accuracy = 80% (8/10) (classification)
 
-Look inside `toy-model` folder. The files there are what `ml-text` library
+Look inside `toy-model` folder. The files there are what **ml-text** library
 expects:
 
 * ml.keywords - the copy of our `keywords.yml`
@@ -108,6 +108,6 @@ Load more files to `toy-data`, add more file formats, change keywords, and repea
 model generation step. See how the keywords you use affect accuracy of prediction.
 
 When you done training your model on your dataset, put the generated model files
-into your project's `resources` folder, where *ml-text* library will find them.
+into your project's `resources` folder, where **ml-text** library will find them.
 
 Well done.
