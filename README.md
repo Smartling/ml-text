@@ -1,3 +1,4 @@
+[![build status](https://travis-ci.org/Smartling/ml-text.svg)](https://travis-ci.org/Smartling/ml-text)
 
 Smartling Text Classifier
 =========================
