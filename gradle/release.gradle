@@ -37,3 +37,5 @@ ext.getTagName = {
         return 'untagged'
     }
 }
+
+version = getVersionName()

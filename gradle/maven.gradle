@@ -1,0 +1,57 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+
+if (!hasProperty('mavenUser')) {
+	ext.mavenUser = System.getenv("mavenUser")
+}
+if (!hasProperty('mavenPassword')) {
+	ext.mavenPassword = System.getenv("mavenPassword")
+}
+
+if (isReleaseVersion) {
+  if (!hasProperty('signing.keyId')) {
+  	ext.'signing.keyId' = System.getenv("SIGNING_KEYID")
+  }
+  if (!hasProperty('signing.password')) {
+  	ext.'signing.password' = System.getenv("SIGNING_PASSWORD")
+  }
+  if (!hasProperty('signing.secretKeyRingFile')) {
+  	ext.'signing.secretKeyRingFile' = System.getenv("SIGNING_SECRETKEYRINGFILE")
+  }
+}
+
+
+signing {
+	required { isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives") }
+	sign configurations.archives
+}
+
+uploadArchives {
+	group 'build'
+	description = "Does a maven deploy of archives artifacts"
+
+	repositories {
+		mavenDeployer {
+      // setUniqueVersion(false)
+
+			configuration = configurations.archives
+
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+				authentication(userName: mavenUser, password: mavenPassword)
+			}
+
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+				authentication(userName: mavenUser, password: mavenPassword)
+			}
+
+			if (isReleaseVersion) {
+				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+			}
+
+			configurePom(pom)
+		}
+	}
+}
