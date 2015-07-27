@@ -4,7 +4,7 @@ Toy-data Tutorial
 
 Were you learn how to train SVM classifier and identify files by their content.
 
-Follow this guide to generate the model files in format expected by **ml-text** library.
+Follow this guide to generate the model files expected by **ml-text** library.
 
 
 Prerequisites
@@ -32,7 +32,7 @@ cd tools
 Step 1. Collect data
 --------------------
 
-Create an empty directory and extract [toy-data.zip](toy-data.zip) there.
+Create an empty directory and extract [toy-data.zip](https://github.com/Smartling/ml-text/raw/master/toy-data-tutorial/toy-data.zip) there.
 You should get this folder tree:
 
     toy-data\
