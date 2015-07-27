@@ -60,6 +60,7 @@ Paste these keywords to `keywords.yml`:
 - '},'
 ```
 
+
 Step 3. Extract features and train the model
 --------------------------------------------
 
@@ -82,6 +83,14 @@ expects:
 * ml.scale - scaling parameters per each feature
 * ml.model - the trained model, in libsvm format
 
+If you are interested, the raw numeric features extracted from train dataset are
+in `tmp.toy-model/*.csv` files. These files then get merged and scaled into
+`tmp.toy-model/train.scale` file, from which SVM classifier is trained.
+
+
+Step 4. Identify files
+----------------------
+
 Now you can identify files with a command
 
 ```bash
@@ -96,12 +105,8 @@ This should give you something like
 
 Which is JSON format with confidence 68.5%
 
-If you are interested, the raw numeric features extracted from train dataset are
-in `tmp.toy-model/*.csv` files. These files then get merged and scaled into
-`tmp.toy-model/train.scale` file, from which SVM classifier is trained.
 
-
-Step 4. Play around
+Step 5. Play around
 -------------------
 
 Load more files to `toy-data`, add more file formats, change keywords, and repeat
