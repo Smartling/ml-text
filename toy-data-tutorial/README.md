@@ -2,7 +2,7 @@
 Toy-data Tutorial
 =================
 
-Were you learn how to train SVM classifier and identify files by their content.
+Where you learn how to train SVM classifier and identify files by their content.
 
 Follow this guide to generate the model files expected by **ml-text** library.
 
