@@ -26,10 +26,11 @@ ext.getVersionName = {
 }
 
 ext.getCurrentBranch = {
-    def branch = exec('git rev-parse --abbrev-ref HEAD').trim()
-    if (branch == 'HEAD') {
+    def branch = System.getenv("TRAVIS_BRANCH")
+    if (!branch)
+      branch = exec('git rev-parse --abbrev-ref HEAD').trim()
+    if (branch == 'HEAD')
       branch = exec('git log -n 1 --pretty=%D HEAD').trim().split(' ').last()
-    }
     return branch
 }
 
