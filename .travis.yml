@@ -10,5 +10,7 @@ env:
   - secure: hP/RMSMJzOSx3cujMv82W2y21cClPH71WWzMOdJRV0jhJsujzFDoaxanUhYfB3EvTPDxwGFjoNRKNhQ3Z5INWg6smNkk8BI2aukg4PrQHAAjg6DrSopU+Un7LYOYfgS7ohLCmGI74rSFi5ouo1CKnCRAiYqZaPyqRJWc2icFY4x2+nA9U38JuJ9IYurKeqDeVHXONbq4Uvx+j0LlTk7KT4UIDmJgtLCtn1OwF/e2sewX+L6Haiz5JBErlOp6hL7V8Oi5zwsgwkPWBs3halkwWaVSf5bwhEvvB+yiHnjKL9p0uNtfkucrOax4veVgR2QLSVD7IhXp9t9drR7a9o9w5UP4Sn2cN2fICjp48+b8L7JukE73T0lKB06xMduzB4boVH3f7MXFUiFjtzNBog6ItSJOqN05PoXg2dOivTHIyElVT0Lu29oTbAElFyixG/fLqU7rVYwiKQZcdLkZ9C4kUdK0Qp+HHBmcUj/bM4KJneVTjzMYIP4wU8ImXk/SBe/8F9yIc7BOeK2OuiXOInXRISrboxAdUBGepZ91lA6Ohnp1Py2PGNE596r887sGK3mzgUQN15TMU3y7rc+lBLYh2M8XzJ9U1RkAILjxXPZufxlS2UtDtWvqWyZ3L3ENFgx4WLJb08h0tPYG9zMlI3fwQ84iAAZQrWOR92QLxLc6feM=
 before_install:
   - openssl aes-256-cbc -k "$SIGNING_PASSWORD" -in .secring.gpg.enc -out .secring.gpg -d
+script:
+  - ./gradlew build --info
 after_success:
   - ./travis-publish.sh
