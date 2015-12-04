@@ -11,6 +11,18 @@ if (!hasProperty('mavenPassword')) {
 	ext.mavenPassword = System.getenv("mavenPassword")
 }
 
+if (isReleaseVersion) {
+  if (!hasProperty('signing.keyId')) {
+  	ext.'signing.keyId' = System.getenv("SIGNING_KEYID")
+  }
+  if (!hasProperty('signing.password')) {
+  	ext.'signing.password' = System.getenv("SIGNING_PASSWORD")
+  }
+  if (!hasProperty('signing.secretKeyRingFile')) {
+  	ext.'signing.secretKeyRingFile' = System.getenv("SIGNING_SECRETKEYRINGFILE")
+  }
+}
+
 signing {
 	required { isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives") }
 	sign configurations.archives

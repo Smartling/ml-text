@@ -1,9 +1,11 @@
 #!/bin/bash
 
-openssl aes-256-cbc -k "$SIGNING_PASSWORD" -in .secring.gpg.enc -out .secring.gpg -d
+if ([ "$TRAVIS_BRANCH" == "master" ] || [ ! -z "$TRAVIS_TAG" ]) &&
+  [ "$TRAVIS_PULL_REQUEST" == "false" ]
+then
 
-./gradlew \
-  -Psigning.keyId="$SIGNING_KEY" \
-  -Psigning.password="$SIGNING_PASSWORD" \
-  -Psigning.secretKeyRingFile="$TRAVIS_BUILD_DIR/.secring.gpg" \
-  uploadArchives --info --stacktrace
+  ./gradlew uploadArchives --info --stacktrace
+
+else
+  echo "Skipping publish"
+fi
