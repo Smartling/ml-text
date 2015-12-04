@@ -26,7 +26,11 @@ ext.getVersionName = {
 }
 
 ext.getCurrentBranch = {
-    return exec('git rev-parse --abbrev-ref HEAD').trim()
+    def branch = exec('git rev-parse --abbrev-ref HEAD').trim()
+    if (branch == 'HEAD') {
+      branch = exec('git log -n 1 --pretty=%D HEAD').trim().split(' ').last()
+    }
+    return branch
 }
 
 ext.getTagName = {
